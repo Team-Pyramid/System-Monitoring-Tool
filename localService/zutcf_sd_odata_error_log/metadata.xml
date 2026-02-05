@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HIERARCHY',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Hierarchy.v1" Alias="SAP__hierarchy"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.zutcf_sd_odata_error_log.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="ZUTCF_Custom_Odata_Error_LogType">
+                <Key>
+                    <PropertyRef Name="opid"/>
+                    <PropertyRef Name="subno"/>
+                    <PropertyRef Name="sapclient"/>
+                    <PropertyRef Name="datum"/>
+                    <PropertyRef Name="uzeit"/>
+                </Key>
+                <Property Name="opid" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="subno" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="sapclient" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="datum" Type="Edm.Date" Nullable="false"/>
+                <Property Name="uzeit" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="username" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="timestamp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="error_count" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="first_tstmp" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="expiry_date" Type="Edm.Date"/>
+                <Property Name="t100_msgid" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="t100_msgno" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="t100_msgv1" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="t100_msgv2" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="t100_msgv3" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="t100_msgv4" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="location" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="channel" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="error_text" Type="Edm.String" Nullable="false" MaxLength="128"/>
+                <Property Name="error_component" Type="Edm.String" Nullable="false" MaxLength="24"/>
+                <Property Name="error_package" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="source_program" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="source_include" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="source_line" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="namespace" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="service_name" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="transaction_id" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="root_context_id" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="connection_id" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="connection_cnt" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="terminal_id" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="remote_address" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="destination" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="request_uri" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="balogno" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="context_size" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="callstack_size" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="request_size" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="response_size" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="error_context" Type="Edm.String" Nullable="false"/>
+                <Property Name="html_page" Type="Edm.String" Nullable="false"/>
+                <Property Name="icf_node" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="request_id" Type="Edm.String" Nullable="false" MaxLength="100"/>
+                <Property Name="service_version" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="log_level" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="service_repo" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="http_status" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="group_id" Type="Edm.String" Nullable="false" MaxLength="36"/>
+                <Property Name="request_kind" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="language" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="user_monitoring_attribute" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="uri" Type="Edm.String" Nullable="false"/>
+                <Property Name="devpr_name" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="mangr_name" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="zteam" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="zdomain" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="bep_fnd" Type="Edm.String" Nullable="false" MaxLength="1"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="ZUTCF_Custom_Odata_Error_Log" EntityType="com.sap.gateway.srvd.zutcf_sd_odata_error_log.v0001.ZUTCF_Custom_Odata_Error_LogType"/>
+            </EntityContainer>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/opid">
+                <Annotation Term="SAP__common.Label" String="Operation ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/subno">
+                <Annotation Term="SAP__common.Label" String="Entry number within an operation"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/sapclient">
+                <Annotation Term="SAP__common.Label" String="Client ID"/>
+                <Annotation Term="SAP__common.Heading" String="Cl."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Client"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/datum">
+                <Annotation Term="SAP__common.Label" String="Date"/>
+                <Annotation Term="SAP__common.Heading" String="Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="BRF+ Specific Data Element for SYDATUM"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/uzeit">
+                <Annotation Term="SAP__common.Label" String="Time"/>
+                <Annotation Term="SAP__common.Heading" String="Time"/>
+                <Annotation Term="SAP__common.QuickInfo" String="System Time"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/username">
+                <Annotation Term="SAP__common.Label" String="User Name"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="User"/>
+                <Annotation Term="SAP__common.QuickInfo" String="User Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/timestamp">
+                <Annotation Term="SAP__common.Label" String="UTC Time Stamp in Long Form"/>
+                <Annotation Term="SAP__common.Heading" String="Time Stamp"/>
+                <Annotation Term="SAP__common.QuickInfo" String="UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/error_count">
+                <Annotation Term="SAP__common.Label" String="Error Count"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/first_tstmp">
+                <Annotation Term="SAP__common.Label" String="First Timestamp"/>
+                <Annotation Term="SAP__common.Heading" String="Time Stamp"/>
+                <Annotation Term="SAP__common.QuickInfo" String="UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/expiry_date">
+                <Annotation Term="SAP__common.Label" String="Expiry Date"/>
+                <Annotation Term="SAP__common.Heading" String="Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="BRF+ Specific Data Element for SYDATUM"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgid">
+                <Annotation Term="SAP__common.Label" String="Message Class"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Message ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Class"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgno">
+                <Annotation Term="SAP__common.Label" String="Message Number"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Heading" String="Msg.No."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgv1">
+                <Annotation Term="SAP__common.Label" String="Message Variable"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Message Variable"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Variable"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgv2">
+                <Annotation Term="SAP__common.Label" String="Message Variable"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Message Variable"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Variable"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgv3">
+                <Annotation Term="SAP__common.Label" String="Message Variable"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Message Variable"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Variable"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/t100_msgv4">
+                <Annotation Term="SAP__common.Label" String="Message Variable"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Message Variable"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Message Variable"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/location">
+                <Annotation Term="SAP__common.Label" String="Error Location"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/channel">
+                <Annotation Term="SAP__common.Label" String="Channel"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/error_text">
+                <Annotation Term="SAP__common.Label" String="Error Text"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/error_component">
+                <Annotation Term="SAP__common.Label" String="ABAP Component"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/error_package">
+                <Annotation Term="SAP__common.Label" String="ABAP Package"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/source_program">
+                <Annotation Term="SAP__common.Label" String="Source Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/source_include">
+                <Annotation Term="SAP__common.Label" String="Source Include"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/source_line">
+                <Annotation Term="SAP__common.Label" String="Source Line"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/namespace">
+                <Annotation Term="SAP__common.Label" String="Service Namespace"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/service_name">
+                <Annotation Term="SAP__common.Label" String="Service Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/transaction_id">
+                <Annotation Term="SAP__common.Label" String="EPP Transaction ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/root_context_id">
+                <Annotation Term="SAP__common.Label" String="EPP Root Context ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/connection_id">
+                <Annotation Term="SAP__common.Label" String="EPP Connection ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/connection_cnt">
+                <Annotation Term="SAP__common.Label" String="EPP Connection Count"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/terminal_id">
+                <Annotation Term="SAP__common.Label" String="Terminal ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/remote_address">
+                <Annotation Term="SAP__common.Label" String="Remote Address"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/destination">
+                <Annotation Term="SAP__common.Label" String="Destination"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/request_uri">
+                <Annotation Term="SAP__common.Label" String="Request URI"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/balogno">
+                <Annotation Term="SAP__common.Label" String="Application log: log number"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/context_size">
+                <Annotation Term="SAP__common.Label" String="XML Size of Error Context"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/callstack_size">
+                <Annotation Term="SAP__common.Label" String="XML Size of Call Stack"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/request_size">
+                <Annotation Term="SAP__common.Label" String="XML Size of Payload Request"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/response_size">
+                <Annotation Term="SAP__common.Label" String="XML Size of Payload Response"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/error_context">
+                <Annotation Term="SAP__common.Label" String="Error Context in XML format"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/html_page">
+                <Annotation Term="SAP__common.Label" String="HTML Page (HTTP Client only)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/icf_node">
+                <Annotation Term="SAP__common.Label" String="ICF Node"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/request_id">
+                <Annotation Term="SAP__common.Label" String="Request ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/service_version">
+                <Annotation Term="SAP__common.Label" String="Service Version"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/log_level">
+                <Annotation Term="SAP__common.Label" String="Error Log Level"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/service_repo">
+                <Annotation Term="SAP__common.Label" String="OData V4 Service Repository"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/http_status">
+                <Annotation Term="SAP__common.Label" String="HTTP Status Code"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/group_id">
+                <Annotation Term="SAP__common.Label" String="OData V4 Service Group ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/request_kind">
+                <Annotation Term="SAP__common.Label" String="Payload trace - request kind"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/language">
+                <Annotation Term="SAP__common.Label" String="Language Key"/>
+                <Annotation Term="SAP__common.Heading" String="Lang."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Language Key"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/user_monitoring_attribute">
+                <Annotation Term="SAP__common.Label" String="User Attribute Monitoring"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/uri">
+                <Annotation Term="SAP__common.Label" String="URI for an Odata Log"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/devpr_name">
+                <Annotation Term="SAP__common.Label" String="Developer Name"/>
+                <Annotation Term="SAP__common.Heading" String="Developer Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Developer Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/mangr_name">
+                <Annotation Term="SAP__common.Label" String="Manager Name"/>
+                <Annotation Term="SAP__common.Heading" String="Manager Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Manager Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/zteam">
+                <Annotation Term="SAP__common.Label" String="Team"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/zdomain">
+                <Annotation Term="SAP__common.Label" String="Domain"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType/bep_fnd">
+                <Annotation Term="SAP__common.Label" String="Frontend/Backend"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ZUTCF_Custom_Odata_Error_LogType">
+                <Annotation Term="SAP__common.Label" String="Odata Error Logs"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/ZUTCF_Custom_Odata_Error_Log">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="RequiredProperties">
+                            <Collection>
+                                <PropertyPath>opid</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Filterable" Bool="true"/>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="error_context"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="html_page"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="uri"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>devpr_name</PropertyPath>
+                                <PropertyPath>mangr_name</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>error_context</PropertyPath>
+                                <PropertyPath>html_page</PropertyPath>
+                                <PropertyPath>uri</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="SAP__aggregation.RollupType/None"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Padding" Bool="true"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="HeaderFooter" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
+                <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
+  

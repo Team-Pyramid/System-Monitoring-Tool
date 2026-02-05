@@ -1,0 +1,1440 @@
+<mvc:View controllerName="zdumpmoniv3.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:m="sap.m"
+	xmlns:sfb="sap.ui.comp.smartfilterbar"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:chart="sap.suite.ui.commons"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:tnt="sap.tnt"
+	xmlns:l="sap.ui.layout">
+	<m:Page id="page" showHeader="false">
+		<m:content>
+			<tnt:ToolHeader id="pageHeader" class="sapUiTinyMargin tntheadercss">
+			<m:Image id="idLogoImage" src="images/blacklogo.PNG" height="1.8rem" />
+			<m:Label id="id_ToolLabel" class="titleDesignNew" wrapping="false" />
+			</tnt:ToolHeader>
+			<sfb:SmartFilterBar id="smartFilterBar" useDateRangeType="true" search="onSearch" entitySet="zutcf_custom_abap_dumps" enableBasicSearch="false" persistencyKey="UniqueAndStablePersistencyKey">
+
+				<sfb:controlConfiguration>
+					<sfb:ControlConfiguration visibleInAdvancedArea="true" key="datum" label="Current Date">
+					<sfb:customControl>
+							<m:DateRangeSelection
+								id="datum"
+								showCurrentDateButton="true"
+								showFooter="true"
+								change="handleDateChange" >
+							</m:DateRangeSelection>
+						</sfb:customControl>
+				</sfb:ControlConfiguration>
+				<sfb:ControlConfiguration visibleInAdvancedArea="true" key="cprog" label="Cancelled Program" id="cprog">
+					</sfb:ControlConfiguration>
+					<sfb:ControlConfiguration visibleInAdvancedArea="true" key="excep" label="Exception Raised" id="excep">
+					</sfb:ControlConfiguration>
+					<sfb:ControlConfiguration visibleInAdvancedArea="true" key="zteam" label="Team" id="team">
+					</sfb:ControlConfiguration>
+					<sfb:ControlConfiguration visibleInAdvancedArea="true" key="devpr" label="User/Developer" id="developer">
+					</sfb:ControlConfiguration>
+					<sfb:ControlConfiguration visibleInAdvancedArea="true" key="zdomain" label="Domain" id="domain">
+					</sfb:ControlConfiguration>
+				</sfb:controlConfiguration>
+			</sfb:SmartFilterBar>
+
+			
+			<m:Toolbar id="mainToolbar" class="clsToolBar">
+				<m:Label id="tollbarLabel" class="clsLblHeader" text="Short Dump and Application Logs Error Trends for Selected Dates" design="Bold">
+					<m:layoutData>
+							<m:ToolbarLayoutData id="toolbarlayout" shrinkable="false" />
+					</m:layoutData>
+				</m:Label>
+			</m:Toolbar>
+			<tnt:ToolHeader id="pageHeader1" class="sapUiTinyMargn">
+				<m:Label id="percentLabel" class="titleDesignNew" wrapping="false" />
+			</tnt:ToolHeader>
+			<l:Grid id="idCardContent1" visible="true">
+			<m:VBox id="idSaleOrgVBox" visible="true">
+				<f:Card id="idCardDumpTrend" height="22rem" width="42rem">
+					<f:content>
+						<viz:VizFrame id="idStackedChartAmt" vizType="pie" width="100%" height="390px"></viz:VizFrame>
+					</f:content>
+				</f:Card>
+				<m:layoutData>
+					<l:GridData id="idGridDataDumpTrend" span="XL6 L6 M4 S2" />
+				</m:layoutData>
+			</m:VBox>
+			<m:VBox id="idAppLogVBox" visible="true">
+				<f:Card id="idCardAppLogPie" height="22rem" width="42rem" visible="true">
+					<f:content>
+						<viz:VizFrame id="idGeopie" vizType="pie" width="100%" height="390px" visible="true"></viz:VizFrame>
+					</f:content>
+				</f:Card>
+			</m:VBox>
+		</l:Grid>
+		<m:Panel id="idODataIdocPanel" expandable="true" headerText="OData and IDOC Error Trends (Selected Period)" width="auto" class="sapUiTinyMargin">
+			<m:content>
+				<l:Grid id="idCardContent2" visible="true">
+				<m:VBox id="idSaleOrgVBox1" visible="true">
+					<f:Card id="idCardODataPie" height="22rem" width="41rem">
+						<f:content>
+							<viz:VizFrame id="idODataPie" vizType="pie" width="100%" height="390px" visible="true"></viz:VizFrame>
+						</f:content>
+					</f:Card>
+					<m:layoutData>
+						<l:GridData id="idGridDataODataPie" span="XL6 L6 M4 S2" />
+					</m:layoutData>
+				</m:VBox>
+				<m:VBox id="idSaleOrgVBox2" visible="true">
+					<f:Card id="idCardSm13Pie" height="22rem" width="41rem" visible="true">
+						<f:content>
+							<viz:VizFrame id="idSm13Pie" vizType="pie" width="100%" height="390px" visible="true"></viz:VizFrame>
+						</f:content>
+					</f:Card>
+				</m:VBox>
+				</l:Grid>
+				<l:Grid id="idCardContent3" visible="true">
+				<m:VBox id="idSaleOrgVBox3" visible="true">
+					<f:Card id="idCardIDocPie" height="22rem" width="41rem" visible="true">
+						<f:content>
+							<viz:VizFrame id="idIdocPie" vizType="pie" width="100%" height="390px" visible="true"></viz:VizFrame>
+						</f:content>
+					</f:Card>
+				</m:VBox>
+				</l:Grid>
+			</m:content>
+		</m:Panel>
+
+			<m:IconTabBar id="idIconTabBarNoIcons" expanded="{device>/isNoPhone}" class="sapUiTinyMargin mainIconTabBar" headerMode="Inline">
+				<m:items>
+					<m:IconTabFilter text="ST22 Short Dumps" id="id_st22tab" key="info">
+
+
+						<m:IconTabBar id="idIconTabBar" select=".onFilterSelect" class="sapUiResponsiveContentPadding" tabDensityMode="Compact">
+							<m:items>
+
+								<m:IconTabFilter icon="sap-icon://contacts" iconColor="Positive" text="Standard" key="Standard_Dumps" id="id_standard">
+
+								<Table id="id_standardTable" rows="{tabledata>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+									<columns>
+										<Column id="idColStdDate" width="7rem">
+											<m:Label id="idLblStdDate" text="Date" />
+											<template>
+												<m:Text id="idTxtStdDate" text="{tabledata>datum}" wrapping="false" />
+											</template>
+										</Column>
+										<Column id="idColStdUser" width="7rem">
+											<m:Label id="idLblStdUser" text="Used By" />
+											<template>
+												<m:Text id="idTxtStdUser" text="{tabledata>uname}" wrapping="false" />
+											</template>
+										</Column>
+										<Column id="idColStdUserName" width="16rem">
+											<m:Label id="idLblStdUserName" text="User Name" />
+											<template>
+												<m:Text id="idTxtStdUserName" text="{tabledata>uname_desc}" wrapping="false" />
+											</template>
+										</Column>
+										<Column id="idColStdCancelledProg" width="20rem">
+												<m:Label text="Cancelled Program" />
+												<template>
+													<m:Link text="{tabledata>cprog}" press="onLinkPress" />
+												</template>
+											</Column>
+											
+											<Column width="10rem">
+												<m:Label text="Runtime Error" />
+												<template>
+													<m:Text text="{tabledata>errid}" />
+												</template>
+											</Column>
+
+											<Column width="10rem">
+												<m:Label text="Exception" />
+												<template>
+													<m:Text text="{tabledata>excep}" />
+												</template>
+											</Column>
+											<Column width="7rem" hAlign="End">
+												<m:Label text="Occurence" />
+												<template>
+													<m:Text text="{tabledata>occnc}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Custom Object Involved 1" />
+												<template>
+													<m:Text text="{tabledata>prog1}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Custom Object Involved 2" />
+												<template>
+													<m:Text text="{tabledata>prog2}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Object Type" />
+												<template>
+													<m:Text text="{tabledata>type}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Class Involved" />
+												<template>
+													<m:Text text="{tabledata>class}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Transport" />
+												<template>
+													<m:Text text="{tabledata>trnsp}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Developer" />
+												<template>
+													<m:Text text="{tabledata>devpr}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Developer Name" />
+												<template>
+													<m:Text text="{tabledata>devpr_name}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Team" />
+												<template>
+													<m:Text text="{tabledata>zteam}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Domain" />
+												<template>
+													<m:Text text="{tabledata>zdomain}" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+								</m:IconTabFilter>
+								<m:IconTabFilter icon="sap-icon://user-settings" iconColor="Critical" text="Custom" key="Custom_Dumps" id="id_custom">
+
+							<Table id="id_customTable" rows="{tabledataCustom>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+									<columns>
+										<Column width="7rem">
+											<m:Label text="Date" />
+											<template>
+												<m:Text text="{tabledataCustom>datum}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Used By" />
+											<template>
+												<m:Text text="{tabledataCustom>uname}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="16rem">
+											<m:Label text="User Name" />
+											<template>
+												<m:Text text="{tabledataCustom>uname_desc}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="20rem">
+												<m:Label text="Cancelled Program" />
+												<template>
+													<m:Link text="{tabledataCustom>cprog}" press="onLinkPress" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Transport" />
+												<template>
+													<m:Text text="{tabledataCustom>trnsp}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Developer" />
+												<template>
+													<m:Text text="{tabledataCustom>devpr}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Developer Name" />
+												<template>
+													<m:Text text="{tabledataCustom>devpr_name}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Team" />
+												<template>
+													<m:Text text="{tabledataCustom>zteam}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Domain" />
+												<template>
+													<m:Text text="{tabledataCustom>zdomain}" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Runtime Error" />
+												<template>
+													<m:Text text="{tabledataCustom>errid}" />
+												</template>
+											</Column>
+
+											<Column width="10rem">
+												<m:Label text="Exception" />
+												<template>
+													<m:Text text="{tabledataCustom>excep}" />
+												</template>
+											</Column>
+											<Column width="7rem" hAlign="End">
+												<m:Label text="Occurence" />
+												<template>
+													<m:Text text="{tabledataCustom>occnc}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Custom Object Involved 1" />
+												<template>
+													<m:Text text="{tabledataCustom>prog1}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Custom Object Involved 2" />
+												<template>
+													<m:Text text="{tabledataCustom>prog2}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Object Type" />
+												<template>
+													<m:Text text="{tabledataCustom>type}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Class Involved" />
+												<template>
+													<m:Text text="{tabledataCustom>class}" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+								</m:IconTabFilter>
+
+							</m:items>
+						</m:IconTabBar>
+					</m:IconTabFilter>
+					<m:IconTabFilter text="SLG1 Application Logs" key="info" id="id_applogtab" >
+
+						<Table id="id_tableAppLogs" rows="{appLogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+											<Column width="7rem">
+												<m:Label text="Date" />
+												<template>
+													<m:Text text="{appLogData>datum}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Log Number" />
+												<template>
+													<m:Link text="{appLogData>log_Number}" wrapping="false" press="onLogNumberPress" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Object" />
+												<template>
+													<m:Link text="{appLogData>object}" wrapping="false" press="onObjectPress"/>
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Sub Object" />
+												<template>
+													<m:Text text="{appLogData>sub_object}"  />
+												</template>
+											</Column>
+											<Column width="17rem">
+												<m:Label text="Program Name" />
+												<template>
+													<m:Text text="{appLogData>program_name}" />
+												</template>
+											</Column>
+											<Column width="7rem" hAlign="End">
+												<m:Label text="Error Count" />
+												<template>
+													<m:Text text="{appLogData>error_count}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Transaction Name" />
+												<template>
+													<m:Text text="{appLogData>transaction_name}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="User ID" />
+												<template>
+													<m:Text text="{appLogData>user_id}" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="User Name" />
+												<template>
+													<m:Text text="{appLogData>user_name}" />
+												</template>
+											</Column>
+
+											<Column width="10rem">
+												<m:Label text="Operating Mode" />
+												<template>
+													<m:Text text="{appLogData>mode_key}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Domain Name" />
+												<template>
+													<m:Text text="{appLogData>domain_name}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Engineering Team" />
+												<template>
+													<m:Text text="{appLogData>engineering_team}" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+					</m:IconTabFilter>
+
+					<m:IconTabFilter text="OData Error Logs" id="id_odata_error_logs" key="info">
+
+						<m:IconTabBar id="idIcnTabBar" class="sapUiResponsiveContentPadding" tabDensityMode="Compact">
+						<m:items>
+
+						<m:IconTabFilter icon="sap-icon://contacts" iconColor="Positive" text="Frontend" id="id_frontend">
+
+
+						<Table id="id_tableODataLogs" rows="{oFrontendDataLogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+											<Column width="7rem" visible="false">
+												<m:Label text="Operation ID" />
+												<template>
+												<m:Link text="{oFrontendDataLogData>opid}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Date" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>datum}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="User Name" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>username}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Error Count" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>error_count}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Message Class" />
+												<template>
+													<m:Link text="{oFrontendDataLogData>t100_msgid}" press="onOperationIdPress" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 1" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>t100_msgno}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 2" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>t100_msgv1}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 3" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>t100_msgv2}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 4" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>t100_msgv3}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 5" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>t100_msgv4}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Location" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>location}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Channel" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>channel}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="20rem">
+												<m:Label text="Error Text" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>error_text}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="ABAP Component" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>error_component}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="ABAP Package" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>error_package}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Source Program" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>source_program}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="11rem">
+												<m:Label text="Source Include" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>source_include}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Source Line" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>source_line}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Namespace" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>namespace}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Service Name" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>service_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Transaction ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>transaction_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Root Context ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>root_context_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Connection ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>connection_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Connection Count" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>connection_cnt}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Terminal ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>terminal_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Remote Address" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>remote_address}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Destination" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>destination}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Request URI" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>request_uri}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Application log: log number" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>balogno}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Error Context" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>context_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Call Stack" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>callstack_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Payload Request" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>request_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Payload Response" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>response_size}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="8rem">
+												<m:Label text="ICF Node" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>icf_node}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Request ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>request_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Service Version" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>service_version}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Error Log Level" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>log_level}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="OData V4 Service Repository" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>service_repo}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="HTTP Status Code" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>http_status}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="OData V4 Service Group ID" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>group_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Developer Name" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>devpr_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Manager Name" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>mangr_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Team" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>zteam}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Domain" />
+												<template>
+													<m:Text text="{oFrontendDataLogData>zdomain}" wrapping="false" />
+												</template>
+											</Column>
+
+										</columns>
+									</Table>
+						</m:IconTabFilter>
+
+						<m:IconTabFilter  icon="sap-icon://user-settings" iconColor="Critical" text="Backend" id="id_backend">
+
+						<Table id="id_tableODataCustomLogs" rows="{oBackendDataLogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+											<Column width="7rem" visible="false">
+												<m:Label text="Operation ID" />
+												<template>
+												<m:Link text="{oBackendDataLogData>opid}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Date" />
+												<template>
+													<m:Text text="{oBackendDataLogData>datum}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="User Name" />
+												<template>
+													<m:Text text="{oBackendDataLogData>username}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Error Count" />
+												<template>
+													<m:Text text="{oBackendDataLogData>error_count}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Message Class" />
+												<template>
+													<m:Link text="{oBackendDataLogData>t100_msgid}" press="onOperationIdPress" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 1" />
+												<template>
+													<m:Text text="{oBackendDataLogData>t100_msgno}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 2" />
+												<template>
+													<m:Text text="{oBackendDataLogData>t100_msgv1}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 3" />
+												<template>
+													<m:Text text="{oBackendDataLogData>t100_msgv2}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 4" />
+												<template>
+													<m:Text text="{oBackendDataLogData>t100_msgv3}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Message Number 5" />
+												<template>
+													<m:Text text="{oBackendDataLogData>t100_msgv4}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Location" />
+												<template>
+													<m:Text text="{oBackendDataLogData>location}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Channel" />
+												<template>
+													<m:Text text="{oBackendDataLogData>channel}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="20rem">
+												<m:Label text="Error Text" />
+												<template>
+													<m:Text text="{oBackendDataLogData>error_text}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="ABAP Component" />
+												<template>
+													<m:Text text="{oBackendDataLogData>error_component}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="ABAP Package" />
+												<template>
+													<m:Text text="{oBackendDataLogData>error_package}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Source Program" />
+												<template>
+													<m:Text text="{oBackendDataLogData>source_program}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="11rem">
+												<m:Label text="Source Include" />
+												<template>
+													<m:Text text="{oBackendDataLogData>source_include}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Source Line" />
+												<template>
+													<m:Text text="{oBackendDataLogData>source_line}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Namespace" />
+												<template>
+													<m:Text text="{oBackendDataLogData>namespace}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Service Name" />
+												<template>
+													<m:Text text="{oBackendDataLogData>service_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Transaction ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>transaction_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Root Context ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>root_context_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Connection ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>connection_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Connection Count" />
+												<template>
+													<m:Text text="{oBackendDataLogData>connection_cnt}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Terminal ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>terminal_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Remote Address" />
+												<template>
+													<m:Text text="{oBackendDataLogData>remote_address}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Destination" />
+												<template>
+													<m:Text text="{oBackendDataLogData>destination}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Request URI" />
+												<template>
+													<m:Text text="{oBackendDataLogData>request_uri}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Application log: log number" />
+												<template>
+													<m:Text text="{oBackendDataLogData>balogno}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Error Context" />
+												<template>
+													<m:Text text="{oBackendDataLogData>context_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Call Stack" />
+												<template>
+													<m:Text text="{oBackendDataLogData>callstack_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Payload Request" />
+												<template>
+													<m:Text text="{oBackendDataLogData>request_size}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="XML Size of Payload Response" />
+												<template>
+													<m:Text text="{oBackendDataLogData>response_size}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="8rem">
+												<m:Label text="ICF Node" />
+												<template>
+													<m:Text text="{oBackendDataLogData>icf_node}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Request ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>request_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Service Version" />
+												<template>
+													<m:Text text="{oBackendDataLogData>service_version}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Error Log Level" />
+												<template>
+													<m:Text text="{oBackendDataLogData>log_level}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="OData V4 Service Repository" />
+												<template>
+													<m:Text text="{oBackendDataLogData>service_repo}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="HTTP Status Code" />
+												<template>
+													<m:Text text="{oBackendDataLogData>http_status}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="OData V4 Service Group ID" />
+												<template>
+													<m:Text text="{oBackendDataLogData>group_id}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Developer Name" />
+												<template>
+													<m:Text text="{oBackendDataLogData>devpr_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Manager Name" />
+												<template>
+													<m:Text text="{oBackendDataLogData>mangr_name}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Team" />
+												<template>
+													<m:Text text="{oBackendDataLogData>zteam}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Domain" />
+												<template>
+													<m:Text text="{oBackendDataLogData>zdomain}" wrapping="false" />
+												</template>
+											</Column>
+
+										</columns>
+									</Table>
+						</m:IconTabFilter>
+
+							</m:items>
+						</m:IconTabBar>
+					</m:IconTabFilter>
+					
+					<m:IconTabFilter text="SM13 System Logs" key="info" id="id_sm13logtab" >
+
+					<Table id="id_tableSM13Logs" rows="{sm13LogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+										<Column width="15rem">
+											<m:Label text="Instance ID" />
+												<template>
+												<m:Text text="{sm13LogData>instance_id}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="8rem">
+											<m:Label text="Client" />
+											<template>
+												<m:Text text="{sm13LogData>client}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+											<m:Label text="Category" />
+												<template>
+												<m:Text text="{sm13LogData>category}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Sub-Category" />
+											<template>
+												<m:Text text="{sm13LogData>subcategory}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Implementation Source" />
+											<template>
+												<m:Text text="{sm13LogData>imp_source}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Time Stamp" />
+											<template>
+												<m:Text text="{sm13LogData>timestamp}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+											<m:Label text="User Name" />
+												<template>
+												<m:Text text="{sm13LogData>uname}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Application Server" />
+											<template>
+												<m:Text text="{sm13LogData>host}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="8rem">
+											<m:Label text="Status" />
+												<template>
+												<m:Text text="{sm13LogData>severity}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="20rem">
+											<m:Label text="Message" />
+												<template>
+												<m:Text text="{sm13LogData>message}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="8rem" hAlign="End">
+											<m:Label text="Counter" />
+												<template>
+												<m:Text text="{sm13LogData>counts}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="15rem">
+											<m:Label text="Transaction ID" />
+												<template>
+												<m:Text text="{sm13LogData>epp_trans_id}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="15rem">
+											<m:Label text="Root Context ID of Extended Passport" />
+												<template>
+												<m:Text text="{sm13LogData>epp_root_ctx_id}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="15rem">
+											<m:Label text="Connection ID of Extended Passport" />
+											<template>
+												<m:Text text="{sm13LogData>epp_conn_id}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="8rem" hAlign="End">
+											<m:Label text="Counter" />
+											<template>
+												<m:Text text="{sm13LogData>epp_conn_counter}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+											<m:Label text="Date" />
+												<template>
+												<m:Text text="{sm13LogData>datum}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="10rem">
+											<m:Label text="Time" />
+												<template>
+												<m:Text text="{sm13LogData>uzeit}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="15rem">
+											<m:Label text="Developer Name" />
+												<template>
+												<m:Text text="{sm13LogData>devpr_name}" wrapping="false" />
+												</template>
+											</Column>
+										<Column width="15rem">
+											<m:Label text="Manager Name" />
+												<template>
+												<m:Text text="{sm13LogData>mangr_name}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Team" />
+											<template>
+												<m:Text text="{sm13LogData>zteam}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Domain" />
+											<template>
+												<m:Text text="{sm13LogData>zdomain}" wrapping="false" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+					</m:IconTabFilter>
+
+					<m:IconTabFilter text="IDOC Error Logs" key="info" id="id_idoclogtab" >
+
+					<Table id="id_tableidocLogs" rows="{idocLogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+										<Column width="10rem">
+											<m:Label text="IDOC Number" />
+												<template>
+												<m:Text text="{idocLogData>docnum}" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Date of status information" />
+											<template>
+												<m:Text text="{idocLogData>logdat}" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Time of status information" />
+											<template>
+												<m:Text text="{idocLogData>logtim}" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="IDoc status counter" />
+											<template>
+												<m:Text text="{idocLogData>countr}" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="SAP Release for IDoc" />
+											<template>
+												<m:Text text="{idocLogData>docrel}" />
+											</template>
+										</Column>
+										<Column width="8rem">
+											<m:Label text="Status of IDoc" />
+											<template>
+												<m:Text text="{idocLogData>status}" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="IDoc Type" />
+											<template>
+												<m:Text text="{idocLogData>doctyp}" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Direction for IDoc" />
+											<template>
+												<m:Text text="{idocLogData>direct}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Receiver port" />
+											<template>
+												<m:Text text="{idocLogData>rcvpor}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Partner Type of Receiver" />
+											<template>
+												<m:Text text="{idocLogData>rcvprt}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Partner Number of Receiver" />
+											<template>
+												<m:Text text="{idocLogData>rcvprn}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Sender port" />
+											<template>
+												<m:Text text="{idocLogData>sndpor}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Partner type of sender" />
+											<template>
+												<m:Text text="{idocLogData>sndprt}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Partner Number of Sender" />
+											<template>
+												<m:Text text="{idocLogData>sndprn}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="IDoc Created On" />
+											<template>
+												<m:Text text="{idocLogData>datum}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="IDoc Created at" />
+											<template>
+												<m:Text text="{idocLogData>uzeit}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Message Type" />
+											<template>
+												<m:Text text="{idocLogData>mestyp}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Basic type" />
+											<template>
+												<m:Text text="{idocLogData>idoctp}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Extension" />
+											<template>
+												<m:Text text="{idocLogData>cimtyp}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Partner Function of Receiver" />
+											<template>
+												<m:Text text="{idocLogData>rcvpfc}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Date on which control rec last chg" />
+											<template>
+												<m:Text text="{idocLogData>upddat}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Time on which control rec last chg" />
+											<template>
+												<m:Text text="{idocLogData>updtim}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Number of data records" />
+											<template>
+												<m:Text text="{idocLogData>maxsegnum}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="8rem">
+											<m:Label text="Status of IDoc" />
+											<template>
+												<m:Text text="{idocLogData>sstatus}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="User Name" />
+											<template>
+												<m:Text text="{idocLogData>uname}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Program Name" />
+											<template>
+												<m:Text text="{idocLogData>repid}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Name of subroutine" />
+											<template>
+												<m:Text text="{idocLogData>routid}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="15rem">
+											<m:Label text="Text for status code" />
+											<template>
+												<m:Text text="{idocLogData>statxt}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Number of SAP segment" />
+											<template>
+												<m:Text text="{idocLogData>segnum}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Field Name in SAP Segment" />
+											<template>
+												<m:Text text="{idocLogData>segfld}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Parameter 1" />
+											<template>
+												<m:Text text="{idocLogData>stapa1}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Parameter 2" />
+											<template>
+												<m:Text text="{idocLogData>stapa2}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Parameter 3" />
+											<template>
+												<m:Text text="{idocLogData>stapa3}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Parameter 4" />
+											<template>
+												<m:Text text="{idocLogData>stapa4}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Type of system error message" />
+											<template>
+												<m:Text text="{idocLogData>statyp}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Status message qualifier" />
+											<template>
+												<m:Text text="{idocLogData>stamqu}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="10rem">
+											<m:Label text="Status message ID" />
+											<template>
+												<m:Text text="{idocLogData>stamid}" wrapping="false" />
+											</template>
+										</Column>
+										<Column width="12rem">
+											<m:Label text="Status message number" />
+											<template>
+												<m:Text text="{idocLogData>stamno}" wrapping="false" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+					</m:IconTabFilter>
+
+					<m:IconTabFilter text="SM21 System Logs" key="info" id="id_sm21logtab" visible="false">
+
+						<Table id="id_tableSM21Logs" rows="{appLogData>/items}" selectionMode="None" paste="onPaste" ariaLabelledBy="title" class="sapUiTinyMargin">
+										<columns>
+											<Column width="7rem">
+												<m:Label text="Date" />
+												<template>
+													<m:Text text="{appLogData>datum}" wrapping="false" />
+												</template>
+											</Column>
+											<Column width="12rem">
+												<m:Label text="Log Number" />
+												<template>
+													<m:Link text="{appLogData>log_Number}" wrapping="false" press="onLogNumberPress" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="Object" />
+												<template>
+													<m:Link text="{appLogData>object}" wrapping="false" press="onObjectPress"/>
+												</template>
+											</Column>
+											<Column width="8rem">
+												<m:Label text="Sub Object" />
+												<template>
+													<m:Text text="{appLogData>sub_object}"  />
+												</template>
+											</Column>
+											<Column width="17rem">
+												<m:Label text="Program Name" />
+												<template>
+													<m:Text text="{appLogData>program_name}" />
+												</template>
+											</Column>
+											<Column width="7rem" hAlign="End">
+												<m:Label text="Error Count" />
+												<template>
+													<m:Text text="{appLogData>error_count}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Transaction Name" />
+												<template>
+													<m:Text text="{appLogData>transaction_name}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="User ID" />
+												<template>
+													<m:Text text="{appLogData>user_id}" />
+												</template>
+											</Column>
+											<Column width="10rem">
+												<m:Label text="User Name" />
+												<template>
+													<m:Text text="{appLogData>user_name}" />
+												</template>
+											</Column>
+
+											<Column width="10rem">
+												<m:Label text="Operating Mode" />
+												<template>
+													<m:Text text="{appLogData>mode_key}" />
+												</template>
+											</Column>
+											<Column width="7rem">
+												<m:Label text="Domain Name" />
+												<template>
+													<m:Text text="{appLogData>domain_name}" />
+												</template>
+											</Column>
+											<Column width="16rem">
+												<m:Label text="Engineering Team" />
+												<template>
+													<m:Text text="{appLogData>engineering_team}" />
+												</template>
+											</Column>
+
+
+										</columns>
+									</Table>
+					</m:IconTabFilter>
+
+				</m:items>
+
+			</m:IconTabBar>
+
+		</m:content>
+	</m:Page>
+</mvc:View>

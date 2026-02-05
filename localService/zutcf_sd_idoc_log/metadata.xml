@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HIERARCHY',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Hierarchy.v1" Alias="SAP__hierarchy"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.zutcf_sd_idoc_log.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="zutcf_idoc_log_ceType">
+                <Key>
+                    <PropertyRef Name="docnum"/>
+                    <PropertyRef Name="logdat"/>
+                    <PropertyRef Name="logtim"/>
+                    <PropertyRef Name="countr"/>
+                </Key>
+                <Property Name="docnum" Type="Edm.String" Nullable="false" MaxLength="16"/>
+                <Property Name="logdat" Type="Edm.Date" Nullable="false"/>
+                <Property Name="logtim" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="countr" Type="Edm.String" Nullable="false" MaxLength="16"/>
+                <Property Name="docrel" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="status" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="doctyp" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="direct" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="rcvpor" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="rcvprt" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="rcvprn" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="sndpor" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="sndprt" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="sndprn" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="datum" Type="Edm.Date"/>
+                <Property Name="uzeit" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="mestyp" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="idoctp" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="cimtyp" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="rcvpfc" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="upddat" Type="Edm.Date"/>
+                <Property Name="updtim" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="maxsegnum" Type="Edm.String" Nullable="false" MaxLength="6"/>
+                <Property Name="sstatus" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="uname" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="repid" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="routid" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="statxt" Type="Edm.String" Nullable="false" MaxLength="70"/>
+                <Property Name="segnum" Type="Edm.String" Nullable="false" MaxLength="6"/>
+                <Property Name="segfld" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Property Name="stapa1" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="stapa2" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="stapa3" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="stapa4" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="statyp" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="stamqu" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="stamid" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="stamno" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="idocxml" Type="Edm.String" Nullable="false"/>
+                <Property Name="idocxmlasc" Type="Edm.String" Nullable="false" MaxLength="32"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="zutcf_idoc_log_ce" EntityType="com.sap.gateway.srvd.zutcf_sd_idoc_log.v0001.zutcf_idoc_log_ceType"/>
+            </EntityContainer>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/docnum">
+                <Annotation Term="SAP__common.Label" String="IDOC Number"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/logdat">
+                <Annotation Term="SAP__common.Label" String="Date of status information"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/logtim">
+                <Annotation Term="SAP__common.Label" String="Time of status information"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/countr">
+                <Annotation Term="SAP__common.Label" String="IDoc status counter"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/docrel">
+                <Annotation Term="SAP__common.Label" String="SAP Release for IDoc"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/status">
+                <Annotation Term="SAP__common.Label" String="Status of IDoc"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/doctyp">
+                <Annotation Term="SAP__common.Label" String="IDoc Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/direct">
+                <Annotation Term="SAP__common.Label" String="Direction for IDoc"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/rcvpor">
+                <Annotation Term="SAP__common.Label" String="Receiver port"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/rcvprt">
+                <Annotation Term="SAP__common.Label" String="Partner Type of Receiver"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/rcvprn">
+                <Annotation Term="SAP__common.Label" String="Partner Number of Receiver"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/sndpor">
+                <Annotation Term="SAP__common.Label" String="Sender port"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/sndprt">
+                <Annotation Term="SAP__common.Label" String="Partner type of sender"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/sndprn">
+                <Annotation Term="SAP__common.Label" String="Partner Number of Sender"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/datum">
+                <Annotation Term="SAP__common.Label" String="IDoc Created On"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/uzeit">
+                <Annotation Term="SAP__common.Label" String="IDoc Created at"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/mestyp">
+                <Annotation Term="SAP__common.Label" String="Message Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/idoctp">
+                <Annotation Term="SAP__common.Label" String="Basic type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/cimtyp">
+                <Annotation Term="SAP__common.Label" String="Extension"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/rcvpfc">
+                <Annotation Term="SAP__common.Label" String="Partner Function of Receiver"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/upddat">
+                <Annotation Term="SAP__common.Label" String="Date on which control rec last chg"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/updtim">
+                <Annotation Term="SAP__common.Label" String="Time on which control rec last chg"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/maxsegnum">
+                <Annotation Term="SAP__common.Label" String="Number of data records"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/sstatus">
+                <Annotation Term="SAP__common.Label" String="Status of IDoc"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/uname">
+                <Annotation Term="SAP__common.Label" String="User Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/repid">
+                <Annotation Term="SAP__common.Label" String="Program Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/routid">
+                <Annotation Term="SAP__common.Label" String="Name of subroutine"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/statxt">
+                <Annotation Term="SAP__common.Label" String="Text for status code"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/segnum">
+                <Annotation Term="SAP__common.Label" String="Number of SAP segment"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/segfld">
+                <Annotation Term="SAP__common.Label" String="Field Name in SAP Segment"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stapa1">
+                <Annotation Term="SAP__common.Label" String="Parameter 1"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stapa2">
+                <Annotation Term="SAP__common.Label" String="Parameter 2"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stapa3">
+                <Annotation Term="SAP__common.Label" String="Parameter 3"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stapa4">
+                <Annotation Term="SAP__common.Label" String="Parameter 4"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/statyp">
+                <Annotation Term="SAP__common.Label" String="Type of system error message"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stamqu">
+                <Annotation Term="SAP__common.Label" String="Status message qualifier"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stamid">
+                <Annotation Term="SAP__common.Label" String="Status message ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/stamno">
+                <Annotation Term="SAP__common.Label" String="Status message number"/>
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/idocxml">
+                <Annotation Term="SAP__common.Label" String="IDOC xml"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType/idocxmlasc">
+                <Annotation Term="SAP__common.Label" String="IDOC xml in binary"/>
+            </Annotations>
+            <Annotations Target="SAP__self.zutcf_idoc_log_ceType">
+                <Annotation Term="SAP__common.Label" String="Custom entity for IDOC log"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/zutcf_idoc_log_ce">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>logdat</PropertyPath>
+                                <PropertyPath>logtim</PropertyPath>
+                                <PropertyPath>countr</PropertyPath>
+                                <PropertyPath>docrel</PropertyPath>
+                                <PropertyPath>upddat</PropertyPath>
+                                <PropertyPath>updtim</PropertyPath>
+                                <PropertyPath>maxsegnum</PropertyPath>
+                                <PropertyPath>sstatus</PropertyPath>
+                                <PropertyPath>repid</PropertyPath>
+                                <PropertyPath>routid</PropertyPath>
+                                <PropertyPath>statxt</PropertyPath>
+                                <PropertyPath>segnum</PropertyPath>
+                                <PropertyPath>segfld</PropertyPath>
+                                <PropertyPath>stapa1</PropertyPath>
+                                <PropertyPath>stapa2</PropertyPath>
+                                <PropertyPath>stapa3</PropertyPath>
+                                <PropertyPath>stapa4</PropertyPath>
+                                <PropertyPath>statyp</PropertyPath>
+                                <PropertyPath>stamqu</PropertyPath>
+                                <PropertyPath>stamid</PropertyPath>
+                                <PropertyPath>stamno</PropertyPath>
+                                <PropertyPath>idocxml</PropertyPath>
+                                <PropertyPath>idocxmlasc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Filterable" Bool="true"/>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="idocxml"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="idocxmlasc"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>idocxml</PropertyPath>
+                                <PropertyPath>idocxmlasc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="SAP__aggregation.RollupType/None"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Padding" Bool="true"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="HeaderFooter" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
+                <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
+ 

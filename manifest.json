@@ -1,0 +1,224 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "zdumpmoniv3",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.4",
+      "toolsId": "178d1ca0-6507-4439-99fa-23061431edd9"
+    },
+    "dataSources": {
+      "ZUTCF_BSB_ABAP_DUMPS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUTCF_BSB_ABAP_DUMPS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZUTCF_BSB_ABAP_DUMPS_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZUTCF_BSB_ABAP_DUMPS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUTCF_BSB_ABAP_DUMPS_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZUTCF_BSB_APPL_LOG_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUTCF_BSB_APPL_LOG_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZUTCF_BSB_APPL_LOG/ZUTCF_BSB_APPL_LOG_VAN.xml"
+        }
+      },
+      "ZUTCF_BSB_APPL_LOG": {
+        "uri": "/sap/opu/odata/sap/ZUTCF_BSB_APPL_LOG/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUTCF_BSB_APPL_LOG_VAN"
+          ],
+          "localUri": "localService/ZUTCF_BSB_APPL_LOG/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZUTCF_BSB_APPL_LOG_MSG_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUTCF_BSB_APPL_LOG_MSG_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZUTCF_BSB_APPL_LOG_MSG/ZUTCF_BSB_APPL_LOG_MSG_VAN.xml"
+        }
+      },
+      "ZUTCF_BSB_APPL_LOG_MSG": {
+        "uri": "/sap/opu/odata/sap/ZUTCF_BSB_APPL_LOG_MSG/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUTCF_BSB_APPL_LOG_MSG_VAN"
+          ],
+          "localUri": "localService/ZUTCF_BSB_APPL_LOG_MSG/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "zutcf_sd_odata_error_log": {
+        "uri": "/sap/opu/odata4/sap/zutcf_sb_odata_error_log/srvd/sap/zutcf_sd_odata_error_log/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/zutcf_sd_odata_error_log/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "zutcf_sd_idoc_log": {
+        "uri": "/sap/opu/odata4/sap/zutcf_bsb_idoc_log_srv/srvd/sap/zutcf_sd_idoc_log/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/zutcf_sd_idoc_log/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "zutcf_bsd_sm13_log_srv": {
+        "uri": "/sap/opu/odata4/sap/zutcf_bsb_sm13_log1_srv/srvd/sap/zutcf_bsd_sm13_log_srv/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/zutcf_bsd_sm13_log_srv/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.23",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zdumpmoniv3.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "ZUTCF_BSB_APPL_LOG": {
+        "dataSource": "ZUTCF_BSB_APPL_LOG",
+        "preload": true,
+        "settings": {}
+      },
+      "ZUTCF_BSB_APPL_LOG_MSG": {
+        "dataSource": "ZUTCF_BSB_APPL_LOG_MSG",
+        "preload": true,
+        "settings": {}
+      },
+      "zutcf_sd_odata_error_log": {
+        "dataSource": "zutcf_sd_odata_error_log",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "zutcf_sd_idoc_log": {
+        "dataSource": "zutcf_sd_idoc_log",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "zutcf_bsd_sm13_log_srv": {
+        "dataSource": "zutcf_bsd_sm13_log_srv",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "zdumpmoniv3.view",
+        "async": true,
+        "viewPath": "zdumpmoniv3.view"
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zdumpmoniv3.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

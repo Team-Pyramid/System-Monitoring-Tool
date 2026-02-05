@@ -1,0 +1,53 @@
+.sapTntToolHeader.sapMTB {
+    background-color: black;
+    border-top: 6px solid #FFFF00;
+}
+
+.tntheadercss {
+    background-color: black;
+    border-top: 6px solid #FFFF00;
+}
+
+.clsToolBar {
+    border: 1px solid black;
+    border-bottom: 1px solid black !important;
+    border-radius: 0.500rem;
+    height: 2.5rem;
+}
+
+.clsLblHeader {
+    color: #000000;
+    margin-left: 16px !important;
+    font-size: 1rem;
+}
+
+.titleDesignNew {
+    text-align: left;
+    font-size: large;
+    color: white !important;
+    margin-top: 2px;
+}
+
+.mainIconTabBar {
+    background-color: black !important;
+    border-top: 6px solid #1f1f08;
+}
+
+.sapTntToolHeader.sapMTB {
+    background-color: black !important;
+    border-top: 6px solid #FFFF00;
+}
+
+.sapTntToolHeaderBorder.tntheadercss {
+    background-color: black !important;
+    border-top: 6px solid #FFFF00;
+}
+.titleDesignYellowHint {
+    text-align: left;
+    font-size: large;
+    color: white !important;
+    margin-top: 2px;
+}
+.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0.5rem 0.5rem !important;
+}
